@@ -17,8 +17,8 @@ const sumDuplicateWords = (countedWords: Record<string, number>, currentWord: Re
   return countedWords;
 };
 
-const isEmptyString = (word: string) : boolean => {
-  return word == "";
+const isValidString = (word: string) : boolean => {
+  return word != "";
 }
 
 export const wordCount = (sequence: string): Record<string, number> => {
@@ -26,8 +26,5 @@ export const wordCount = (sequence: string): Record<string, number> => {
     return {};
   }
   let words = sequence.toLowerCase().split(" ");
-  if (words.every(isEmptyString)){
-    return {};
-  }
-  return  words.map(countWords).reduce(sumDuplicateWords);
+  return  words.filter(isValidString).map(countWords).reduce(sumDuplicateWords,{});
 };
